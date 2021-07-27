@@ -8,9 +8,10 @@ const PostIt = ({ title, text, bg }) => {
       break;
     case "green":
       break;
-    case "purple":
+    case "blue":
       bgCol = "#ccf";
       break;
+    default:
   }
   return (
     <Box
