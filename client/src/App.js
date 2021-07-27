@@ -4,7 +4,7 @@ import Notes from "./components/Notes";
 
 const App = () => {
   return (
-    <Box as="main" mt={8} mx={8}>
+    <Box as="main" mt={5} mx={8}>
       <Notes />
     </Box>
   );

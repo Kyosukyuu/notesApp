@@ -21,8 +21,11 @@ const PostIt = ({ title, text, bg }) => {
       bg={bgCol}
       boxShadow="md"
       height="14rem"
-      width="14rem"
-      m={4}
+      // width="14rem"
+      width="100%"
+      // m={4}
+      my="20px"
+      mx="auto"
       p={3}
       display="inline-block"
       position="relative"
