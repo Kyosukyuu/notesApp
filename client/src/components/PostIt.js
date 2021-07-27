@@ -17,11 +17,13 @@ const PostIt = ({ title, text, bg }) => {
     <Box
       bg={bgCol}
       boxShadow="md"
-      height="10rem"
-      width="10rem"
+      height="14rem"
+      width="14rem"
+      m={4}
       p={3}
       display="inline-block"
       position="relative"
+      justifySelf="center"
     >
       <Box
         bg="#aaa"
