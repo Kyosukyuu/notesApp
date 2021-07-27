@@ -11,6 +11,9 @@ const PostIt = ({ title, text, bg }) => {
     case "blue":
       bgCol = "#ccf";
       break;
+    case "pink":
+      bgCol = "#ffc8d5";
+      break;
     default:
   }
   return (
