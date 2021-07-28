@@ -1,5 +1,5 @@
 import PostIt from "./PostIt";
-import { SimpleGrid, Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 const Notes = () => {
   return (

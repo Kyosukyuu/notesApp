@@ -20,7 +20,7 @@ const PostIt = ({ title, text, bg }) => {
     <Box
       bg={bgCol}
       boxShadow="md"
-      height="14rem"
+      minHeight="14rem"
       // width="14rem"
       width="100%"
       // m={4}
