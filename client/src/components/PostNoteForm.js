@@ -7,26 +7,56 @@ import {
   Input,
   Textarea,
   Button,
+  Heading,
+  Flex,
 } from "@chakra-ui/react";
 
 const PostNoteForm = () => {
   const { register, handleSubmit } = useForm();
   const submitNote = (data) => console.log(data);
   return (
-    <Box as="form">
+    <Box
+      as="form"
+      onSubmit={handleSubmit(submitNote)}
+      p={3}
+      mb={4}
+      mx="auto"
+      rounded="md"
+      bg="white"
+      boxShadow="sm"
+      maxWidth="650px"
+    >
       <FormControl id="new-note">
-        <FormLabel>Create New Note</FormLabel>
-        <FormLabel htmlFor="note-title">Title</FormLabel>
-        <Input
-          type="text"
-          placeholder="ex: groceries"
-          name="note-title"
-          {...register("example")}
-        />
-        <FormLabel htmlFor="note-text">Text</FormLabel>
-        <Textarea type="text" name="note-text" />
+        <Heading as="h2" size="xl" mb={2} textAlign="center">
+          Post a New Note
+        </Heading>
+        <Box mb={3}>
+          <FormLabel htmlFor="note-title">Title</FormLabel>
+          <Input
+            type="text"
+            placeholder="ex: groceries"
+            name="note-title"
+            {...register("note-title")}
+          />
+        </Box>
+        <Box>
+          <FormLabel htmlFor="note-text">Text</FormLabel>
+          <Textarea
+            type="text"
+            placeholder="-bananas..."
+            name="note-text"
+            {...register("note-text")}
+          />
+        </Box>
       </FormControl>
-      <Button colorScheme="blue">Submit</Button>
+      <Flex mt={4} justifyContent="space-between">
+        <Button colorScheme="blue" type="submit" width="100px">
+          Post It!
+        </Button>
+        <Button colorScheme="red" type="reset" variant="outline" width="100px">
+          Clear
+        </Button>
+      </Flex>
     </Box>
   );
 };
