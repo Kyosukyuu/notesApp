@@ -10,10 +10,18 @@ import {
   Heading,
   Flex,
 } from "@chakra-ui/react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const PostNoteForm = () => {
   const { register, handleSubmit } = useForm();
-  const submitNote = (data) => console.log(data);
+
+  const [storedNotes, setStoredNotes] = useLocalStorage("notes");
+  const submitNote = (data) => {
+    console.log(data);
+    storedNotes
+      ? setStoredNotes([...storedNotes, data])
+      : setStoredNotes([data]);
+  };
   return (
     <Box
       as="form"
