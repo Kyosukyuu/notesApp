@@ -1,12 +1,13 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 
 const PostIt = ({ title, text, bg }) => {
-  let bgCol = "#cfc";
+  let bgCol;
   switch (bg) {
     case "yellow":
       bgCol = "#ffc";
       break;
     case "green":
+      bgCol = "#cfc";
       break;
     case "blue":
       bgCol = "#ccf";
@@ -15,6 +16,7 @@ const PostIt = ({ title, text, bg }) => {
       bgCol = "#ffc8d5";
       break;
     default:
+      bgCol = "#cfc";
   }
   return (
     <Box
@@ -30,6 +32,7 @@ const PostIt = ({ title, text, bg }) => {
       display="inline-block"
       position="relative"
       justifySelf="center"
+      whiteSpace="pre-line"
     >
       <Box
         bg="#aaa"

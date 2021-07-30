@@ -1,14 +1,22 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import Notes from "./components/Notes";
+import Options from "./components/Options";
 import PostNoteForm from "./components/PostNoteForm";
+import { NotesProvider } from "./context/NotesContext";
 
 const App = () => {
   return (
-    <Box as="main" mt={5} mx={8}>
-      <PostNoteForm />
-      <Notes />
-    </Box>
+    <NotesProvider>
+      <Box as="main" mt={5} mx={8}>
+        <Flex justifyContent="center" alignItems="center">
+          <PostNoteForm />
+          <Options />
+        </Flex>
+
+        <Notes />
+      </Box>
+    </NotesProvider>
   );
 };
 

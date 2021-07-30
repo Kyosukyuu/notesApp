@@ -1,21 +1,22 @@
 import PostIt from "./PostIt";
 import { Box } from "@chakra-ui/react";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { useContext, useEffect } from "react";
+import { NotesContext } from "../context/NotesContext";
 
 const Notes = () => {
+  const [storedNotes, setStoredNotes] = useLocalStorage("notes");
+  const { notes, setNotes } = useContext(NotesContext);
+  useEffect(() => {
+    if (storedNotes) setNotes(storedNotes);
+  }, []);
+
   return (
     <Box sx={{ columnCount: [1, 2, 3, 4], gap: "40px" }}>
-      <PostIt title="title1" text="note1" bg="yellow" />
-      <PostIt title="title2" text="note2" bg="green" />
-      <PostIt title="title3" text="note3" bg="blue" />
-      <PostIt title="title4" text="note4" bg="pink" />
-      <PostIt title="title1" text="note1" bg="yellow" />
-      <PostIt title="title2" text="note2" bg="green" />
-      <PostIt title="title3" text="note3" bg="blue" />
-      <PostIt title="title4" text="note4" bg="pink" />
-      <PostIt title="title1" text="note1" bg="yellow" />
-      <PostIt title="title2" text="note2" bg="green" />
-      <PostIt title="title3" text="note3" bg="blue" />
-      <PostIt title="title4" text="note4" bg="pink" />
+      {notes &&
+        notes.map(({ noteTitle, noteText, noteColor }, i) => (
+          <PostIt key={i} title={noteTitle} text={noteText} bg={noteColor} />
+        ))}
     </Box>
   );
 };
