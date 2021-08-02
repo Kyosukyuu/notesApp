@@ -47,7 +47,7 @@ const ActionsDrawer = () => {
         <DrawerOverlay />
         <DrawerContent width="225px !important">
           <DrawerCloseButton />
-          <DrawerHeader>More Actions</DrawerHeader>
+          <DrawerHeader as="header">More Actions</DrawerHeader>
 
           <DrawerBody bg="white">
             <DeleteAllNotes />

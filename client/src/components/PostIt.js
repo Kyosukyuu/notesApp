@@ -1,15 +1,22 @@
 import { Box, Heading, Text, Flex, Tooltip } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { useContext, useEffect } from "react";
 import { NotesContext } from "../context/NotesContext";
 
 const MotionBox = motion(Box);
 
 const PostIt = ({ title, text, bg, id }) => {
+  const [storedNotes, setStoredNotes] = useLocalStorage("notes");
   const { notes, setNotes } = useContext(NotesContext);
+
   const deleteNote = () => {
-    console.log(notes);
+    setNotes(notes.filter((note) => note.id !== id));
   };
+
+  // useEffect(() => {
+  //   setStoredNotes(storedNotes);
+  // }, [notes, setNotes]);
 
   return (
     <MotionBox

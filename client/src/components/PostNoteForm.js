@@ -14,7 +14,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NotesContext } from "../context/NotesContext";
 import { v4 as uuidv4 } from "uuid";
 
@@ -27,19 +27,20 @@ const PostNoteForm = () => {
   const submitNote = (data) => {
     data["status"] = "incomplete";
     data["id"] = uuidv4();
-    setNotes(() => {
-      storedNotes ? setStoredNotes([...notes, data]) : setStoredNotes([data]);
-      return [...notes, data];
-    });
+    setNotes([...notes, data]);
   };
+
+  useEffect(() => {
+    setStoredNotes(notes);
+  }, [notes, setNotes]);
 
   return (
     <Box
       as="form"
       onSubmit={handleSubmit(submitNote)}
-      p={3}
+      p={4}
       mb={-36}
-      mt={10}
+      mt={8}
       mx={8}
       rounded="md"
       bg="white"

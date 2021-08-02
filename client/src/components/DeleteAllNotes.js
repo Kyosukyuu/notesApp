@@ -1,7 +1,7 @@
 import { Button, Tooltip } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NotesContext } from "../context/NotesContext";
 
 const DeleteAllNotes = () => {
@@ -9,9 +9,13 @@ const DeleteAllNotes = () => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
 
   const deleteAllNotes = () => {
-    localStorage.removeItem("notes");
+    // localStorage.removeItem("notes");
     setNotes([]);
   };
+
+  useEffect(() => {
+    if (notes.length === 0) localStorage.removeItem("notes");
+  }, [notes, setNotes]);
 
   return (
     <Tooltip hasArrow label="Delete All Notes">

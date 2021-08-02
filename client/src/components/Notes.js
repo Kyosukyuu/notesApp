@@ -7,6 +7,7 @@ import { NotesContext } from "../context/NotesContext";
 const Notes = () => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
   const { notes, setNotes } = useContext(NotesContext);
+
   useEffect(() => {
     if (storedNotes) setNotes(storedNotes);
   }, [setNotes, storedNotes]);
@@ -17,8 +18,13 @@ const Notes = () => {
         as="article"
         sx={{ columnCount: [1, 2, 3, 4], gap: "40px" }}
         // mx={[12, 12, 12, 20]}
+        px={10}
+        py={3}
+        mb={6}
         width="100%"
         maxWidth={["100%", "100%", "750px", "1000px"]}
+        bg="gray.800"
+        rounded="md"
       >
         {notes &&
           notes.map(({ noteTitle, noteText, noteColor, id }) => (
