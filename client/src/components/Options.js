@@ -12,22 +12,46 @@ import {
   Flex,
   Heading,
 } from "@chakra-ui/react";
-import { MdSettings } from "react-icons/md";
+import { MdSettings, MdDelete } from "react-icons/md";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { useContext } from "react";
+import { NotesContext } from "../context/NotesContext";
+import { motion } from "framer-motion";
+
+const MotionFlex = motion(Flex);
 
 const Options = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [storedNotes, setStoredNotes] = useLocalStorage("notes");
+  const { notes, setNotes } = useContext(NotesContext);
+
+  const deleteAllNotes = () => {
+    setStoredNotes("");
+    setNotes([]);
+  };
+
   return (
-    <Flex flexDirection="column" alignItems="center" mx={8} color="gray.900">
-      <Flex
+    <MotionFlex
+      flexDirection="column"
+      alignItems="center"
+      mx={8}
+      color="gray.900"
+      boxShadow="md"
+      whileHover={{ color: "#3182CE" }}
+    >
+      <MotionFlex
         bg="white"
         rounded="md"
         flexDirection="column"
         alignItems="center"
         p={3}
+        onClick={onOpen}
+        cursor="pointer"
+        whileHover={{ backgroundColor: "#171923" }}
       >
-        <MdSettings size={100} onClick={onOpen} cursor="pointer" />
+        <MdSettings size={100} />
         <Heading>Options</Heading>
-      </Flex>
+      </MotionFlex>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -36,7 +60,12 @@ const Options = () => {
           <ModalCloseButton />
           <ModalBody>
             <Flex>
-              <Button>Clear All Notes</Button>
+              <Button
+                onClick={deleteAllNotes}
+                leftIcon={<MdDelete size={22} />}
+              >
+                Delete All Notes
+              </Button>
             </Flex>
           </ModalBody>
 
@@ -48,7 +77,7 @@ const Options = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </Flex>
+    </MotionFlex>
   );
 };
 

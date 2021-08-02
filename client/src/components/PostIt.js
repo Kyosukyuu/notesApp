@@ -1,31 +1,22 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Tooltip } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import { useContext } from "react";
+import { NotesContext } from "../context/NotesContext";
 
-const PostIt = ({ title, text, bg }) => {
-  let bgCol;
-  switch (bg) {
-    case "yellow":
-      bgCol = "#ffc";
-      break;
-    case "green":
-      bgCol = "#cfc";
-      break;
-    case "blue":
-      bgCol = "#ccf";
-      break;
-    case "pink":
-      bgCol = "#ffc8d5";
-      break;
-    default:
-      bgCol = "#cfc";
-  }
+const MotionBox = motion(Box);
+
+const PostIt = ({ title, text, bg, id }) => {
+  const { notes, setNotes } = useContext(NotesContext);
+  const deleteNote = () => {
+    console.log(notes);
+  };
+
   return (
-    <Box
-      bg={bgCol}
+    <MotionBox
+      bg={bg}
       boxShadow="md"
       minHeight="14rem"
-      // width="14rem"
       width="100%"
-      // m={4}
       my="20px"
       mx="auto"
       p={3}
@@ -33,32 +24,35 @@ const PostIt = ({ title, text, bg }) => {
       position="relative"
       justifySelf="center"
       whiteSpace="pre-line"
+      whileHover={{ scale: 1.025 }}
     >
-      <Box
-        bg="#aaa"
-        display="flex"
-        height="32px"
-        width="2px"
-        position="absolute"
-        left="50%"
-        top="-17px"
-        zIndex="1"
-        justifyContent="center"
-      >
-        <Box
-          bg="#A31"
-          borderRadius="50%"
-          height="12px"
-          width="12px"
+      <Tooltip hasArrow label="Delete">
+        <Flex
+          bg="#aaa"
+          height="32px"
+          width="2px"
           position="absolute"
-        ></Box>
-      </Box>
+          left="50%"
+          top="-20px"
+          zIndex="1"
+          justifyContent="center"
+          onClick={deleteNote}
+        >
+          <Box
+            bg="#A31"
+            borderRadius="50%"
+            height="12px"
+            width="12px"
+            position="absolute"
+          ></Box>
+        </Flex>
+      </Tooltip>
 
       <Heading as="h2" size="lg">
         {title}
       </Heading>
       <Text>{text}</Text>
-    </Box>
+    </MotionBox>
   );
 };
 

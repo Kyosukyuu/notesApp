@@ -16,18 +16,21 @@ import {
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useContext } from "react";
 import { NotesContext } from "../context/NotesContext";
+import { v4 as uuidv4 } from "uuid";
 
 const PostNoteForm = () => {
   const { register, handleSubmit } = useForm();
-  const { notes, setNotes } = useContext(NotesContext);
 
+  const { notes, setNotes } = useContext(NotesContext);
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
+
   const submitNote = (data) => {
-    console.log(data);
-    storedNotes
-      ? setStoredNotes([...storedNotes, data])
-      : setStoredNotes([data]);
-    setNotes([...notes, data]);
+    data["status"] = "incomplete";
+    data["id"] = uuidv4();
+    setNotes(() => {
+      storedNotes ? setStoredNotes([...notes, data]) : setStoredNotes([data]);
+      return [...notes, data];
+    });
   };
 
   return (
@@ -35,12 +38,12 @@ const PostNoteForm = () => {
       as="form"
       onSubmit={handleSubmit(submitNote)}
       p={3}
-      mb={4}
+      mb={-36}
       mt={10}
       mx={8}
       rounded="md"
       bg="white"
-      boxShadow="sm"
+      boxShadow="lg"
       maxWidth="650px"
     >
       <FormControl id="new-note">
@@ -60,11 +63,11 @@ const PostNoteForm = () => {
           </Box>
           <Flex width="100%" ml={4} flexDirection="column">
             <FormLabel htmlFor="noteColor">Choose a color</FormLabel>
-            <RadioGroup defaultValue="yellow">
+            <RadioGroup defaultValue="yellow" defaultValue="#ffc">
               <Stack spacing={3} direction="row">
                 <Radio
                   colorScheme="yellow"
-                  value="yellow"
+                  value="#ffc"
                   name="note-color"
                   {...register("noteColor")}
                 >
@@ -72,7 +75,7 @@ const PostNoteForm = () => {
                 </Radio>
                 <Radio
                   colorScheme="blue"
-                  value="blue"
+                  value="#ccf"
                   name="noteColor"
                   {...register("noteColor")}
                 >
@@ -80,7 +83,7 @@ const PostNoteForm = () => {
                 </Radio>
                 <Radio
                   colorScheme="green"
-                  value="green"
+                  value="#cfc"
                   name="noteColor"
                   {...register("noteColor")}
                 >
@@ -88,7 +91,7 @@ const PostNoteForm = () => {
                 </Radio>
                 <Radio
                   colorScheme="pink"
-                  value="pink"
+                  value="#ffc8d5"
                   name="noteColor"
                   {...register("noteColor")}
                 >
