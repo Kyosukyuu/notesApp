@@ -53,6 +53,7 @@ const PostIt = ({ title, text, bg, id }) => {
       whileHover={{ scale: 1.025 }}
       onHoverStart={() => setShowStatus(true)}
       onHoverEnd={() => setShowStatus(false)}
+      textDecoration={status === "INCOMPLETE" ? "none" : "line-through"}
     >
       <Tooltip hasArrow label="Delete">
         <Flex
