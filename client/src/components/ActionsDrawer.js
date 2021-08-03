@@ -32,7 +32,6 @@ const ActionsDrawer = () => {
           boxShadow="lg"
           colorScheme="purple"
           onClick={onOpen}
-          width="58px"
         >
           <Icon as={MdKeyboardArrowLeft} fontSize={30} />
         </MotionButton>

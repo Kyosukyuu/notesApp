@@ -38,13 +38,14 @@ const Notes = () => {
             boxShadow="sm"
           >
             {notes &&
-              notes.map(({ noteTitle, noteText, noteColor, id }) => (
+              notes.map(({ noteTitle, noteText, noteColor, id, status }) => (
                 <PostIt
                   key={id}
                   title={noteTitle}
                   text={noteText}
                   bg={noteColor}
                   id={id}
+                  status={status}
                 />
               ))}
           </Box>

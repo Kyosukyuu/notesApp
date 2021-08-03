@@ -25,7 +25,7 @@ const PostNoteForm = () => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
 
   const submitNote = (data) => {
-    data["status"] = "incomplete";
+    data["status"] = "INCOMPLETE";
     data["id"] = uuidv4();
     setNotes([...notes, data]);
   };
