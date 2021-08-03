@@ -32,7 +32,7 @@ const PostNoteForm = () => {
 
   useEffect(() => {
     setStoredNotes(notes);
-  }, [notes, setNotes]);
+  }, [notes, setNotes, setStoredNotes]);
 
   return (
     <Box
@@ -48,7 +48,7 @@ const PostNoteForm = () => {
       maxWidth="650px"
     >
       <FormControl id="new-note">
-        <Heading as="h2" size="xl" mb={2} textAlign="center">
+        <Heading as="h2" size="xl" mb={4} textAlign="center">
           Post a New Note
         </Heading>
         <Box display="flex">

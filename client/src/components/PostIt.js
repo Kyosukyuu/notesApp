@@ -44,6 +44,7 @@ const PostIt = ({ title, text, bg, id }) => {
           zIndex="1"
           justifyContent="center"
           onClick={deleteNote}
+          cursor="pointer"
         >
           <Box
             bg="#A31"

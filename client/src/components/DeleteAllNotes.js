@@ -1,16 +1,31 @@
-import { Button, Tooltip } from "@chakra-ui/react";
+import {
+  Button,
+  Tooltip,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+} from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { NotesContext } from "../context/NotesContext";
 
 const DeleteAllNotes = () => {
   const { notes, setNotes } = useContext(NotesContext);
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
 
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => setIsOpen(false);
+  const onOpen = () => setIsOpen(true);
+  const cancelRef = useRef();
+
   const deleteAllNotes = () => {
     // localStorage.removeItem("notes");
     setNotes([]);
+    onClose();
   };
 
   useEffect(() => {
@@ -18,11 +33,39 @@ const DeleteAllNotes = () => {
   }, [notes, setNotes]);
 
   return (
-    <Tooltip hasArrow label="Delete All Notes">
-      <Button colorScheme="red" size="lg" py={10} onClick={deleteAllNotes}>
-        <MdDelete size={60} />
-      </Button>
-    </Tooltip>
+    <>
+      <Tooltip hasArrow label="Delete All Notes">
+        <Button colorScheme="red" size="lg" py={10} onClick={onOpen}>
+          <MdDelete size={60} />
+        </Button>
+      </Tooltip>
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+              Delete All Notes
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme="red" onClick={deleteAllNotes} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
+    </>
   );
 };
 
