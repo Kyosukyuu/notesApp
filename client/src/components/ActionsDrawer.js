@@ -9,6 +9,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Tooltip,
+  Icon,
 } from "@chakra-ui/react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { motion } from "framer-motion";
@@ -33,7 +34,7 @@ const ActionsDrawer = () => {
           onClick={onOpen}
           width="58px"
         >
-          <MdKeyboardArrowLeft size={35} />
+          <Icon as={MdKeyboardArrowLeft} fontSize={30} />
         </MotionButton>
       </Tooltip>
 
@@ -56,7 +57,6 @@ const ActionsDrawer = () => {
           <DrawerFooter>
             <Button
               variant="outline"
-              // mr={3}
               display="block"
               width="100%"
               onClick={onClose}
@@ -64,7 +64,6 @@ const ActionsDrawer = () => {
             >
               Exit
             </Button>
-            {/* <Button colorScheme="blue">Save</Button> */}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

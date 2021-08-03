@@ -14,10 +14,15 @@ const App = () => {
       <Center
         as="main"
         pt={5}
-        bgImage={[null, null, null, `url(${svgBG}), url(${svgBG2})`]}
+        bgImage={[
+          null,
+          null,
+          `url(${svgBG}), url(${svgBG2})`,
+          `url(${svgBG}), url(${svgBG2})`,
+        ]}
         bgRepeat="no-repeat"
-        bgPosition="1% 30%, 98% 50%"
-        bgSize="225px"
+        bgPosition={[null, null, ["3% 52%, 97% 50%"], "1% 30%, 98% 50%"]}
+        bgSize={[null, null, "135px", "225px"]}
         bgColor="gray.900"
       >
         <PostNoteForm />

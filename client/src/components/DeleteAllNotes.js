@@ -7,6 +7,7 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
+  Icon,
 } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -36,7 +37,7 @@ const DeleteAllNotes = () => {
     <>
       <Tooltip hasArrow label="Delete All Notes">
         <Button colorScheme="red" size="lg" py={10} onClick={onOpen}>
-          <MdDelete size={60} />
+          <Icon as={MdDelete} fontSize={60} />
         </Button>
       </Tooltip>
       <AlertDialog
