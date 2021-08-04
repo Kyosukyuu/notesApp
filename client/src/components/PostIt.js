@@ -15,25 +15,44 @@ import { MdIndeterminateCheckBox, MdCheckBox } from "react-icons/md";
 
 const MotionBox = motion(Box);
 
-const PostIt = ({ title, text, bg, id }) => {
+const PostIt = ({ title, text, bg, id, statusInternal }) => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
   const { notes, setNotes } = useContext(NotesContext);
   const [showStatus, setShowStatus] = useState(false);
-  const [status, setStatus] = useState("INCOMPLETE");
+  const [status, setStatus] = useState(statusInternal || "INCOMPLETE");
 
   const deleteNote = () => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
   // useEffect(() => {
-  //   setStoredNotes(storedNotes);
-  // }, [notes, setNotes]);
+  //   // setStoredNotes(storedNotes);
+
+  //   if (storedNotes.length < 0) {
+  //     setStoredNotes(() => notes);
+  //   }
+  //   console.log(storedNotes);
+  // }, [notes, setNotes, setStoredNotes]);
+
+  // useEffect(() => {
+  //   console.log(storedNotes);
+  // }, [status]);
 
   const toggleStatus = () => {
     if (status === "INCOMPLETE") {
       setStatus("COMPLETE");
+      const noteIndex = notes.map((note) => note.id).indexOf(id);
+      let tempNotes = [...notes];
+      tempNotes[noteIndex].status = "COMPLETE";
+      setStoredNotes(tempNotes);
+      setNotes(tempNotes);
     } else if (status === "COMPLETE") {
       setStatus("INCOMPLETE");
+      const noteIndex = notes.map((note) => note.id).indexOf(id);
+      let tempNotes = [...notes];
+      tempNotes[noteIndex].status = "INCOMPLETE";
+      setStoredNotes(tempNotes);
+      setNotes(tempNotes);
     }
   };
 

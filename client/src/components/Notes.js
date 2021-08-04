@@ -23,7 +23,7 @@ const Notes = () => {
 
   return (
     <>
-      {notes.length > 0 ? (
+      {notes && notes.length > 0 ? (
         <Center mt={44} mx={[10, 10, null, 10]}>
           <Box
             as="article"
@@ -45,7 +45,7 @@ const Notes = () => {
                   text={noteText}
                   bg={noteColor}
                   id={id}
-                  status={status}
+                  statusInternal={status}
                 />
               ))}
           </Box>
