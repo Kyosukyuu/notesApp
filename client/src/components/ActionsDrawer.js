@@ -10,10 +10,13 @@ import {
   useDisclosure,
   Tooltip,
   Icon,
+  VStack,
 } from "@chakra-ui/react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { motion } from "framer-motion";
 import DeleteAllNotes from "./DeleteAllNotes";
+import MarkAllNotes from "./MarkAllNotes";
+import UnmarkAllNotes from "./UnmarkAllNotes";
 
 const MotionButton = motion(Button);
 
@@ -50,7 +53,11 @@ const ActionsDrawer = () => {
           <DrawerHeader as="header">More Actions</DrawerHeader>
 
           <DrawerBody bg="white">
-            <DeleteAllNotes />
+            <VStack alignItems="flex-start" spacing={5}>
+              <DeleteAllNotes />
+              <MarkAllNotes />
+              <UnmarkAllNotes />
+            </VStack>
           </DrawerBody>
 
           <DrawerFooter>

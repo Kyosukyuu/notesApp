@@ -19,35 +19,21 @@ const PostIt = ({ title, text, bg, id, statusInternal }) => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
   const { notes, setNotes } = useContext(NotesContext);
   const [showStatus, setShowStatus] = useState(false);
-  const [status, setStatus] = useState(statusInternal || "INCOMPLETE");
 
   const deleteNote = () => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
-  // useEffect(() => {
-  //   // setStoredNotes(storedNotes);
-
-  //   if (storedNotes.length < 0) {
-  //     setStoredNotes(() => notes);
-  //   }
-  //   console.log(storedNotes);
-  // }, [notes, setNotes, setStoredNotes]);
-
-  // useEffect(() => {
-  //   console.log(storedNotes);
-  // }, [status]);
-
   const toggleStatus = () => {
-    if (status === "INCOMPLETE") {
-      setStatus("COMPLETE");
+    if (statusInternal === "INCOMPLETE") {
+      statusInternal = "COMPLETE";
       const noteIndex = notes.map((note) => note.id).indexOf(id);
       let tempNotes = [...notes];
       tempNotes[noteIndex].status = "COMPLETE";
       setStoredNotes(tempNotes);
       setNotes(tempNotes);
-    } else if (status === "COMPLETE") {
-      setStatus("INCOMPLETE");
+    } else if (statusInternal === "COMPLETE") {
+      statusInternal = "INCOMPLETE";
       const noteIndex = notes.map((note) => note.id).indexOf(id);
       let tempNotes = [...notes];
       tempNotes[noteIndex].status = "INCOMPLETE";
@@ -72,7 +58,7 @@ const PostIt = ({ title, text, bg, id, statusInternal }) => {
       whileHover={{ scale: 1.025 }}
       onHoverStart={() => setShowStatus(true)}
       onHoverEnd={() => setShowStatus(false)}
-      textDecoration={status === "INCOMPLETE" ? "none" : "line-through"}
+      textDecoration={statusInternal === "INCOMPLETE" ? "none" : "line-through"}
     >
       <Tooltip hasArrow label="Delete">
         <Flex
@@ -96,7 +82,7 @@ const PostIt = ({ title, text, bg, id, statusInternal }) => {
           ></Box>
         </Flex>
       </Tooltip>
-      {showStatus && status === "INCOMPLETE" && (
+      {showStatus && statusInternal === "INCOMPLETE" && (
         <Tooltip hasArrow label="In-Progress">
           <IconButton
             icon={
@@ -120,7 +106,7 @@ const PostIt = ({ title, text, bg, id, statusInternal }) => {
         </Tooltip>
       )}
 
-      {showStatus && status === "COMPLETE" && (
+      {showStatus && statusInternal === "COMPLETE" && (
         <Tooltip hasArrow label="Finished">
           <IconButton
             icon={<Icon as={MdCheckBox} aria-label="Status" fontSize={18} />}

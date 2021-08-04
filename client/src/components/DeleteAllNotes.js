@@ -24,7 +24,6 @@ const DeleteAllNotes = () => {
   const cancelRef = useRef();
 
   const deleteAllNotes = () => {
-    // localStorage.removeItem("notes");
     setNotes([]);
     onClose();
   };
