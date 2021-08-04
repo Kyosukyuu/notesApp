@@ -19,7 +19,7 @@ const MarkAllNotes = () => {
 
   return (
     <>
-      <Tooltip hasArrow label="Mark All Notes">
+      <Tooltip hasArrow label="Mark Notes As Finished">
         <Button colorScheme="blue" size="lg" py={10} onClick={markAllNotes}>
           <Icon as={MdDoneAll} fontSize={60} />
         </Button>

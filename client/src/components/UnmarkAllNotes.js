@@ -19,7 +19,7 @@ const UnmarkAllNotes = () => {
 
   return (
     <>
-      <Tooltip hasArrow label="Unmark All Notes">
+      <Tooltip hasArrow label="Mark Notes As In-Progress">
         <Button
           colorScheme="blue"
           size="lg"
