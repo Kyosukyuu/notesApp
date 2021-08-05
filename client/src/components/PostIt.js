@@ -15,6 +15,12 @@ import { MdIndeterminateCheckBox, MdCheckBox } from "react-icons/md";
 
 const MotionBox = motion(Box);
 
+const variants = {
+  hidden1: { opacity: 0, y: -10 },
+  visible1: { opacity: 1, y: 0, transition: { duration: 0.75 } },
+  exit1: { opacity: 0, y: -10, transition: { duration: 0.75 } },
+};
+
 const PostIt = ({ title, text, bg, id, statusInternal }) => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
   const { notes, setNotes } = useContext(NotesContext);
@@ -59,6 +65,11 @@ const PostIt = ({ title, text, bg, id, statusInternal }) => {
       onHoverStart={() => setShowStatus(true)}
       onHoverEnd={() => setShowStatus(false)}
       textDecoration={statusInternal === "INCOMPLETE" ? "none" : "line-through"}
+      variants={variants}
+      initial="hidden1"
+      animate="visible1"
+      exit="exit1"
+      // transition={{ duration: 0.75 }}
     >
       <Tooltip hasArrow label="Delete">
         <Flex

@@ -17,6 +17,14 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { useContext, useEffect } from "react";
 import { NotesContext } from "../context/NotesContext";
 import { v4 as uuidv4 } from "uuid";
+import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
+
+const variants = {
+  hidden: { scale: 0.75, opacity: 0 },
+  visible: { scale: 1, opacity: 1 },
+};
 
 const PostNoteForm = () => {
   const { register, handleSubmit } = useForm();
@@ -35,7 +43,7 @@ const PostNoteForm = () => {
   }, [notes, setNotes, setStoredNotes]);
 
   return (
-    <Box
+    <MotionBox
       as="form"
       onSubmit={handleSubmit(submitNote)}
       p={4}
@@ -46,6 +54,10 @@ const PostNoteForm = () => {
       bg="white"
       boxShadow="lg"
       maxWidth="650px"
+      variants={variants}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.75 }}
     >
       <FormControl id="new-note">
         <Heading as="h2" size="xl" mb={4} textAlign="center">
@@ -123,7 +135,7 @@ const PostNoteForm = () => {
           Clear
         </Button>
       </Flex>
-    </Box>
+    </MotionBox>
   );
 };
 

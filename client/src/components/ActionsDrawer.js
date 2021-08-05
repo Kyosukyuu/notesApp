@@ -48,7 +48,7 @@ const ActionsDrawer = () => {
         // finalFocusRef={btnRef}
       >
         <DrawerOverlay />
-        <DrawerContent width="225px !important">
+        <DrawerContent width="200px !important">
           <DrawerCloseButton />
           <DrawerHeader as="header">More Actions</DrawerHeader>
 
