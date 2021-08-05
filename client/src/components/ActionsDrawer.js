@@ -20,6 +20,11 @@ import UnmarkAllNotes from "./UnmarkAllNotes";
 
 const MotionButton = motion(Button);
 
+const variants = {
+  initial: { x: 15, opacity: 0, rotate: 45 },
+  animate: { x: 0, opacity: 1, rotate: 0 },
+};
+
 const ActionsDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -35,6 +40,9 @@ const ActionsDrawer = () => {
           boxShadow="lg"
           colorScheme="purple"
           onClick={onOpen}
+          variants={variants}
+          initial="initial"
+          animate="animate"
         >
           <Icon as={MdKeyboardArrowLeft} fontSize={30} />
         </MotionButton>
