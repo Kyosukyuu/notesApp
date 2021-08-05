@@ -17,8 +17,8 @@ const MotionBox = motion(Box);
 
 const variants = {
   hidden1: { opacity: 0, y: -10 },
-  visible1: { opacity: 1, y: 0, transition: { duration: 0.75 } },
-  exit1: { opacity: 0, y: -10, transition: { duration: 0.75 } },
+  visible1: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  exit1: { opacity: 0, y: -10, transition: { duration: 0.5 } },
 };
 
 const PostIt = ({ title, text, bg, id, statusInternal }) => {

@@ -14,13 +14,6 @@ import { NotesContext } from "../context/NotesContext";
 import svgImg from "../assets/undraw_feeling_blue.svg";
 import { motion, AnimatePresence } from "framer-motion";
 
-const MotionCenter = motion(Center);
-
-const variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-
 const Notes = () => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");
   const { notes, setNotes } = useContext(NotesContext);
@@ -32,13 +25,7 @@ const Notes = () => {
   return (
     <>
       {notes && notes.length > 0 ? (
-        <MotionCenter
-          mt={44}
-          mx={[10, 10, null, 10]}
-          variants={variants}
-          initial="hidden"
-          animate="visible"
-        >
+        <Center mt={44} mx={[10, 10, null, 10]}>
           <Box
             as="article"
             sx={{ columnCount: [1, 2, 3, 4], gap: "30px" }}
@@ -67,7 +54,7 @@ const Notes = () => {
                 )}
             </AnimatePresence>
           </Box>
-        </MotionCenter>
+        </Center>
       ) : (
         <Center flexDirection="column" mt={44} mb={10} mx={[10, 10, null, 10]}>
           <Image src={svgImg} width="500px" />
