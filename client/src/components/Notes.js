@@ -12,7 +12,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { useContext, useEffect } from "react";
 import { NotesContext } from "../context/NotesContext";
 import svgImg from "../assets/undraw_feeling_blue.svg";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 const Notes = () => {
   const [storedNotes, setStoredNotes] = useLocalStorage("notes");

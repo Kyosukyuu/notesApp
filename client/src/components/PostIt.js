@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { NotesContext } from "../context/NotesContext";
 import { MdIndeterminateCheckBox, MdCheckBox } from "react-icons/md";
 
