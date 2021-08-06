@@ -43,6 +43,7 @@ const ActionsDrawer = () => {
           variants={variants}
           initial="initial"
           animate="animate"
+          aria-label="More Actions"
         >
           <Icon as={MdKeyboardArrowLeft} fontSize={30} />
         </MotionButton>

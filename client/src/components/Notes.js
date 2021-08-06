@@ -57,7 +57,11 @@ const Notes = () => {
         </Center>
       ) : (
         <Center flexDirection="column" mt={44} mb={10} mx={[10, 10, null, 10]}>
-          <Image src={svgImg} width="500px" />
+          <Image
+            src={svgImg}
+            width="500px"
+            alt="Giant, red sad face with woman standing behind it"
+          />
           <Alert
             status="info"
             colorScheme="gray"

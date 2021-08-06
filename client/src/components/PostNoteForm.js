@@ -69,6 +69,7 @@ const PostNoteForm = () => {
               type="text"
               placeholder="ex: groceries"
               name="noteTitle"
+              id="note-title"
               {...register("noteTitle")}
               required
             />
@@ -81,6 +82,7 @@ const PostNoteForm = () => {
                   colorScheme="yellow"
                   value="#ffc"
                   name="note-color"
+                  id="note-color-yellow"
                   {...register("noteColor")}
                 >
                   Yellow
@@ -89,6 +91,7 @@ const PostNoteForm = () => {
                   colorScheme="blue"
                   value="#ccf"
                   name="noteColor"
+                  id="note-color-blue"
                   {...register("noteColor")}
                 >
                   Blue
@@ -97,6 +100,7 @@ const PostNoteForm = () => {
                   colorScheme="green"
                   value="#cfc"
                   name="noteColor"
+                  id="note-color-green"
                   {...register("noteColor")}
                 >
                   Green
@@ -105,6 +109,7 @@ const PostNoteForm = () => {
                   colorScheme="pink"
                   value="#ffc8d5"
                   name="noteColor"
+                  id="note-color-pink"
                   {...register("noteColor")}
                 >
                   Pink
@@ -120,6 +125,7 @@ const PostNoteForm = () => {
             type="text"
             placeholder="-bananas..."
             name="noteText"
+            id="note-text"
             {...register("noteText")}
             resize="none"
             required
@@ -127,10 +133,21 @@ const PostNoteForm = () => {
         </Box>
       </FormControl>
       <Flex mt={4} justifyContent="space-between" flexDirection="row-reverse">
-        <Button colorScheme="blue" type="submit" width="100px">
+        <Button
+          colorScheme="purple"
+          type="submit"
+          width="100px"
+          aria-label="post note"
+        >
           Post It!
         </Button>
-        <Button colorScheme="red" type="reset" variant="outline" width="100px">
+        <Button
+          colorScheme="red"
+          type="reset"
+          variant="outline"
+          width="100px"
+          aria-label="clear fields"
+        >
           Clear
         </Button>
       </Flex>
