@@ -17,3 +17,7 @@ cd client
 npm i
 npm start
 ```
+
+## Progressive Web App
+
+This app can also be run as a PWA.
